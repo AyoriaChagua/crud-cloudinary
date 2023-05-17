@@ -1,0 +1,33 @@
+<div class="container mt-5">
+    <div class="row">
+        <h1 CLASS="h1">EDIT PRODUCT</h1>
+        <div class="col-5">
+            <form action="/products/{{product.id}}" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Name</label>
+                  <input type="text" name="name" class="form-control"placeholder="Brand" value="{{product.name}}">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Brand</label>
+                  <input type="text" name="brand" class="form-control"placeholder="Brand" value="{{product.brand}}">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Price</label>
+                  <input type="text" name="price" class="form-control" placeholder="Price" value="{{product.price}}">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Stock</label>
+                  <input type="text" name="stock" class="form-control"  placeholder="Stock" value="{{product.stock}}">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Image</label>
+                  <img src="{{product.imageUrl}}">
+                  <input type="file" accept="image/*" name="image" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <input type="submit" name="" class="btn btn-success" value="Save" >
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

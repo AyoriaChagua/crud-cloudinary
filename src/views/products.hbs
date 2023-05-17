@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9 mb-5">
+      <h1 class="h1">Products</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+              <tr>
+              <th>{{id}}</th>
+              <td>{{name}}</td>
+              <td>{{brand}}</td>
+              <td>{{price}}</td>
+              <td>{{stock}}</td>
+              <td><img src="{{imageUrl}}" alt="{{name}} image"></td>
+              <td>
+                <div class="conatiner">
+                  <div class="row">
+                    <div class="col-4"><a href="products/delete/{{id}}" class="btn btn-danger">del</a></div>
+                    <div class="col-4"><a href="products/{{id}}" class="btn btn-primary">upd</a></div>
+                  </div>
+                </div>
+              </td>
+              </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-3 mb-5">
+      <h2 class="h2">Add a product</h2>
+      <form action="/products"  method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Name</label>
+                  <input type="text" name="name" class="form-control"placeholder="Name" >
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Brand</label>
+                  <input type="text" name="brand" class="form-control"placeholder="Brand" >
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Price</label>
+                  <input type="text" name="price" class="form-control" placeholder="Price" >
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Stock</label>
+                  <input type="number" name="stock" class="form-control"  placeholder="Stock" >
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">Image</label>
+                  <input type="file" accept="image/*" name="image" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <input type="submit" class="btn btn-success" value="Save" >
+                </div>
+            </form>
+    </div>
+  </div>
+</div>
