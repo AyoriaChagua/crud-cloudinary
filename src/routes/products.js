@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const Product = require("../models/Product.js")
 const multer = require("multer");
-const cloudinary = require('cloudinary').v2;
 const upload = multer({ dest: 'uploads/' });
 const router_products = Router()
+const cloudinary = require('cloudinary').v2;
 require("dotenv").config()
 
 cloudinary.config({
@@ -57,7 +57,7 @@ router_products.get('/delete/:id', async (req, res)=>{
     try {
         const { id } = req.params
         await Product.findByIdAndDelete(id)
-        res.redirect("/")
+        res.redirect("/products")
     } catch (error) {
         res.status(500).json({ error: 'Error al eliminar el producto' });
 
@@ -97,7 +97,7 @@ router_products.post('/:id', upload.single('image'),async (req, res)=>{
         }
         
         await Product.findByIdAndUpdate(req.params.id, product, { new: true });
-        res.redirect('/')
+        res.redirect('/products')
     } catch (error) {
         res.status(500).json({ error: 'Error al actualizar el producto' });
     }
