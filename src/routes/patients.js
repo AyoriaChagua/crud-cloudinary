@@ -77,11 +77,11 @@ router_patients.post('/:id', upload.single('image'),async (req, res)=>{
             height: 100,
             Crop: 'fill'
           });
-        const patient = {
-            lastname: patient.lastname,
-            name: patient.name,
-            gender: patient.gender,
-            speciality: patient.speciality,
+          const patient = {
+            lastname: req.body.lastname,
+            name: req.body.name,
+            gender: req.body.gender,
+            speciality: req.body.speciality,
             imageUrl: url,
         }
         await Patient.findByIdAndUpdate(req.params.id, patient, { new: true });
