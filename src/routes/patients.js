@@ -15,7 +15,6 @@ router_patients.get('/', async (req, res)=>{
     }
 })
 
-
 router_patients.post('/', upload.single('image'), async (req, res) => {
     try {
         const imageFile = req.file.path;
@@ -45,9 +44,6 @@ router_patients.post('/', upload.single('image'), async (req, res) => {
     }
 });
 
-
-
-
 router_patients.get('/delete/:id', async (req, res)=>{
     try {
         const { id } = req.params
@@ -73,7 +69,6 @@ router_patients.get('/:id', async (req, res)=>{
 router_patients.post('/:id', upload.single('image'),async (req, res)=>{
     try {
         const imageFile = req.file.path;
-
         const result = await cloudinary.uploader.upload(imageFile, {
             folder: "patients"
         });
@@ -82,7 +77,6 @@ router_patients.post('/:id', upload.single('image'),async (req, res)=>{
             height: 100,
             Crop: 'fill'
           });
-
         const patient = {
             lastname: patient.lastname,
             name: patient.name,
@@ -90,13 +84,11 @@ router_patients.post('/:id', upload.single('image'),async (req, res)=>{
             speciality: patient.speciality,
             imageUrl: url,
         }
-        
         await Patient.findByIdAndUpdate(req.params.id, patient, { new: true });
         res.redirect('/patients')
     } catch (error) {
         res.status(500).json({ error: 'Error al actualizar al patient' });
     }
 })
-
 
 module.exports = router_patients
