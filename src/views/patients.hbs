@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+        <div class="col-9 mb-5">
+
+            {{#if patients}}
+            <div class="container mt-5">
+                <h1 class="h1">Patients</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Lastname</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Speciality</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each patients}}
+                        <tr>
+                            <th class="idPatient center-td">{{id}}</th>
+                            <td class="center-td">{{lastname}}</td>
+                            <td class="center-td">{{name}}</td>
+                            <td class="center-td">{{gender}}</td>
+                            <td class="center-td">{{speciality}}</td>
+                            <td class="center-td"><img src="{{imageUrl}}" alt="{{name}} image"></td>
+                            <td class="center-td">
+                                <div class="conatiner">
+                                    <div class="row">
+                                        <div class="col-4"><a href="products/delete/{{id}}"
+                                                class="btn btn-danger">del</a></div>
+                                        <div class="col-4"><a href="products/{{id}}" class="btn btn-primary">upd</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+            {{else}}
+            <div class="container mt-5">
+                <h1>You don't have registered patients yet</h1>
+            </div>
+            {{/if}}
+        </div>
+        <div class="col-3 mb-5">
+           <div class="container mt-5">
+            <h2 class="h2">Add a Patient</h2>
+            <form action="/patients" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"><b>Lastname</b></label>
+                    <input type="text" name="lastname" class="form-control" placeholder="Lastname">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"><b>Name</b></label>
+                    <input type="text" name="name" class="form-control" placeholder="Name">
+                </div>
+                
+                <div class="mb-3">
+                    <label><b>Gender:</b></label><br> <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="gender-male" value="Male">
+                        <label class="form-check-label" for="gender-male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="gender-female" value="Female">
+                        <label class="form-check-label" for="gender-female">Female</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="speciality"><b>Speciality:</b></label> <br> <br>
+                    <select class="form-control" id="speciality" name="speciality">
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Dermatology">Dermatology</option>
+                        <option value="Neurology">Neurology</option>
+                        <option value="Ophthalmology">Ophthalmology</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"><b>Image</b></label>
+                    <input type="file" accept="image/*" name="image" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-success" value="Save">
+                </div>
+            </form>
+           </div>
+        </div>
+    </div>
+</div>
+<script>
+    let idLong = document.querySelector(".idPatient")
+    let text = idLong.textContent || idLong.innerText;
+    let idShort = text.substring(0, 5);
+    idLong.innerHTML = idShort
+</script>

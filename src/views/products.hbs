@@ -16,7 +16,7 @@
         <tbody>
           {{#each products}}
               <tr>
-              <th>{{id}}</th>
+              <th class="idPatient">{{id}}</th>
               <td>{{name}}</td>
               <td>{{brand}}</td>
               <td>{{price}}</td>
@@ -65,3 +65,9 @@
     </div>
   </div>
 </div>
+<script>
+  let idLong = document.querySelector(".idPatient")
+  let text = idLong.textContent || idLong.innerText;
+  let idShort = text.substring(0, 5);
+  idLong.innerHTML = idShort
+</script>
