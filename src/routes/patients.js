@@ -5,11 +5,12 @@ const cloudinary = require('cloudinary').v2;
 require("dotenv").config()
 const {Router} = require("express")
 const router_patients = Router()
+const { authJwt } = require("../middlewares/index.js")
 
-router_patients.get('/', async (req, res)=>{
+router_patients.get('/', authJwt.verifyToken, async (req, res)=>{
     try {
         const patients = await Patient.find({})
-        res.render("patients", {patients})
+        res.render("patients", { patients })
     } catch (error) {
         res.status(500).json({ error: 'Error searching for patients' });
     }

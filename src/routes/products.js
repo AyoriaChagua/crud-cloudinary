@@ -24,7 +24,6 @@ router_products.get('/', async (req, res)=>{
 router_products.post('/', upload.single('image'), async (req, res) => {
     try {
         const imageFile = req.file.path;
-
         const result = await cloudinary.uploader.upload(imageFile, {
             folder: "my-images-lab09"
         });
@@ -49,9 +48,6 @@ router_products.post('/', upload.single('image'), async (req, res) => {
         return res.status(500).json({ error: 'Error al subir la imagen o guardar el producto' });
     }
 });
-
-
-
 
 router_products.get('/delete/:id', async (req, res)=>{
     try {
@@ -78,7 +74,6 @@ router_products.get('/:id', async (req, res)=>{
 router_products.post('/:id', upload.single('image'),async (req, res)=>{
     try {
         const imageFile = req.file.path;
-
         const result = await cloudinary.uploader.upload(imageFile, {
             folder: "my-images-lab09"
         });
@@ -87,7 +82,6 @@ router_products.post('/:id', upload.single('image'),async (req, res)=>{
             height: 100,
             Crop: 'fill'
           });
-
         const product = {
             name: req.body.name,
             brand: req.body.brand,
@@ -95,7 +89,6 @@ router_products.post('/:id', upload.single('image'),async (req, res)=>{
             stock: req.body.stock,
             imageUrl: url,
         }
-        
         await Product.findByIdAndUpdate(req.params.id, product, { new: true });
         res.redirect('/products')
     } catch (error) {

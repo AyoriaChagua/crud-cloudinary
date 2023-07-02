@@ -1,7 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-8 mb-5">
-
             {{#if patients}}
             <div class="container mt-5">
                 <h1 class="h1">Patients</h1><br>
@@ -88,7 +87,12 @@
                 <div class="mb-3">
                     <input type="submit" class="btn btn-success" value="Save">
                 </div>
+
             </form>
+            </div>
+            
+           <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-primary" onclick="goProfile()">Edit profile</button>
             </div>
            </div>
         </div>
@@ -109,5 +113,33 @@
             alert("Removal canceled");
         }
     })
+</script>
 
+{{#if token}}
+<script>
+  var token = "{{ token }}";
+  localStorage.setItem('token', token);
+</script>
+{{/if}}
+
+<script>
+    const goProfile = async () => {
+        const token = localStorage.getItem('token');
+        try {
+            const response = await fetch('/profile', {
+                headers: {
+                    Authorization: `x-access-token ${token}`,
+                },
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                window.location.href = `/profile/${data}`
+                } else {
+                console.log('Error al obtener el userId');
+            }
+        } catch (error) {
+            console.log( error );
+        }
+    }
 </script>

@@ -1,0 +1,34 @@
+{{#if msg}}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle-fill"></i> {{msg}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{{/if}}
+{{#if error}}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-circle-fill"></i> {{error}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+{{/if}}
+<div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+  <div class="card text-white bg-primary m-5" style="width: 25rem;">
+    <div class="card-header">Inicio de sesión</div>
+    <div class="card-body" style=" overflow-y: auto;">
+     <form action="/auth/login"  method="post" id="login-form">
+        <div class="mb-3">
+            <label for="loginEmail" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" id="loginEmail" placeholder="Ingresa tu email" required>
+        </div>
+        <div class="mb-3">
+            <label for="loginPassword" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Ingresa tu contraseña" required>
+        </div>
+        <div class="form-group">
+          <div class="g-recaptcha" data-sitekey="6LdXv-MmAAAAAA4IXxrtxzua8f5P9OMPAR_nQNc2" ></div>
+        </div>
+        <button type="submit" class="btn btn-dark">Send</button>
+        </form>
+    </div>
+  </div>
+  <p class="lead">Do not you have an account yet? <a href="/auth/register">sign up</a> :D</p>
+</div>

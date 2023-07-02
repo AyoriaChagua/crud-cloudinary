@@ -1,0 +1,52 @@
+<div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+    {{#if error}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-circle-fill"></i> {{error}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {{/if}}
+    <h1 class="display-1">Sign up free</h1>
+    <h2 class="fw-normal">We will send you an email with the confirmation of your created account</h2>
+    <div class="card text-white bg-primary m-5" style="width: 25rem;">
+        <div class="card-header">Register</div>
+            <div class="card-body">
+                <form action="/auth/register"  method="post" id="form-register">
+                    <div class="mb-3">
+                        <label for="registerUsername" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" placeholder="Enter your username" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email</label>
+                        <input type="email" email="email" class="form-control"  placeholder="Enter your email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password"  name="password" class="form-control"  placeholder="Enter your password" id="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="registerPasswordConfirm" class="form-label">Repeat password</label>
+                        <input type="password" id="passwordConfirm" class="form-control"  placeholder="Repeat the password">
+                    </div>
+                    <div class="form-group">
+                        <div class="g-recaptcha" data-sitekey="6LdXv-MmAAAAAA4IXxrtxzua8f5P9OMPAR_nQNc2" ></div>
+                    </div>
+                    <input type="submit" class="btn btn-dark" value="Save">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function validateForm(event) {
+        event.preventDefault(); 
+        var password = document.getElementsByName("password")[0].value;
+        var passwordConfirm = document.getElementById("passwordConfirm").value;
+
+        if (password !== passwordConfirm) {
+        alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+        } else {
+        document.getElementById("form-register").submit();
+        }
+    }
+    document.getElementById("form-register").addEventListener("submit", validateForm);
+</script>
